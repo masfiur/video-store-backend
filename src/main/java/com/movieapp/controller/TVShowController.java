@@ -21,24 +21,21 @@ public class TVShowController {
 
     @GetMapping("/all")
     public List<TVShow> getAllTVShows() {
-        return tvShowService.getAllTVShows(); // Calling the service method to get all TV shows
+        return tvShowService.getAllTVShows(); 
     }
 
-    // Get a TV show by its title
     @GetMapping("/title")
     public TVShow getTVShowByTitle(@RequestParam String title) {
-        return tvShowService.getTVShowByTitle(title); // Calling the service method to get a TV show by title
+        return tvShowService.getTVShowByTitle(title);
     }
 
-    // Get a TV show by its ID
     @GetMapping("/{id}")
     public TVShow getTVShowById(@PathVariable String id) {
-        return tvShowService.getTVShowById(id); // Calling the service method to get a TV show by ID
+        return tvShowService.getTVShowById(id);
     }
 
-    // Delete a TV show by ID
     @DeleteMapping("/{id}")
     public void deleteTVShow(@PathVariable String id) {
-        tvShowService.deleteTVShow(id); // Calling the service method to delete a TV show by ID
+        tvShowService.deleteTVShow(id); 
     }
 }

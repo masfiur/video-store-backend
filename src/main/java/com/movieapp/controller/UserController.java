@@ -12,11 +12,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // Register a new user
     @PostMapping("/register")
     public User registerUser(@RequestParam String email, @RequestParam String password) {
         return userService.registerUser(email, password);
     }
 
+    // Authenticate a user
     @PostMapping("/login")
     public boolean authenticateUser(@RequestParam String email, @RequestParam String password) {
         return userService.authenticateUser(email, password);
