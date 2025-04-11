@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = {"http://localhost:3001", "https://video-store-murex.vercel.app"})
 @RestController
 @RequestMapping("/api/tvshows")
 public class TVShowController {

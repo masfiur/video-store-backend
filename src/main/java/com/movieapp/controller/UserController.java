@@ -13,7 +13,14 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:3001", allowCredentials = "true")
+
+@CrossOrigin(
+    origins = {
+        "http://localhost:3001",
+        "https://video-store-murex.vercel.app"
+    },
+    allowCredentials = "true"
+)
 public class UserController {
 
     @Autowired
