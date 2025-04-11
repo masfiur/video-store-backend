@@ -1,25 +1,25 @@
-# Stage 1: Use Maven to build the app
+# Stage 1: Build with Maven
 FROM maven:3.9.4-eclipse-temurin-17 AS builder
 
 WORKDIR /app
 
-# Copy pom.xml and source files
+# Copy pom.xml and source code into the container
 COPY pom.xml .
 COPY src ./src
 
-# Build the app (skip tests to speed up)
+# Run Maven to build the application (skip tests for now)
 RUN mvn clean install -DskipTests
 
-# Stage 2: Use JDK to run the built JAR
+# Stage 2: Run with JDK
 FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-# Copy the JAR from the build stage
+# Copy the generated JAR file from the build stage
 COPY --from=builder /app/target/*.jar app.jar
 
-# Expose Spring Boot's default port
+# Expose the port that Spring Boot app is running on
 EXPOSE 8085
 
-# Run the app
+# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
