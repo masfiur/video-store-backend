@@ -11,7 +11,6 @@ public class User {
     private String email;
     private String password;
 
-    // Constructors, getters, and setters
     public User() {}
 
     public User(String email, String password) {

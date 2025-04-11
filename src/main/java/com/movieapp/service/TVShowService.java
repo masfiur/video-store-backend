@@ -1,5 +1,6 @@
 package com.movieapp.service;
 
+import com.movieapp.model.Movie;
 import com.movieapp.model.TVShow;
 import com.movieapp.repository.TVShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,10 @@ public class TVShowService {
 
     public TVShow addTVShow(TVShow tvShow) {
         return tvShowRepository.save(tvShow);
+    }
+
+    public List<TVShow> addTVShow(List<TVShow> tvShow) {
+        return tvShowRepository.saveAll(tvShow);
     }
 
     public List<TVShow> getAllTVShows() {

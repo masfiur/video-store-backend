@@ -16,7 +16,6 @@ public class Movie {
     private String image;
     private String genres;
 
-    // Constructors, getters, and setters
     public Movie() {}
 
     public Movie(String title, String description, double rating, double rentPrice, double purchasePrice, String image, String genres) {

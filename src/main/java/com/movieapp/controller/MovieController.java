@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 @RequestMapping("/api/movies")
 public class MovieController {
@@ -17,6 +18,11 @@ public class MovieController {
     @PostMapping("/add")
     public Movie addMovie(@RequestBody Movie movie) {
         return movieService.addMovie(movie); 
+    }
+
+    @PostMapping("/add-multiple")
+    public List<Movie> addMovies(@RequestBody List<Movie> movies) {
+        return movieService.addMovies(movies);
     }
 
     @GetMapping("/all")

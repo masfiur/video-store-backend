@@ -16,7 +16,6 @@ public class TVShow {
     private String image;
     private String genres;
 
-    // Constructors, getters, and setters
     public TVShow() {}
 
     public TVShow(String title, String description, double rating, double rentPrice, double purchasePrice, String image, String genres) {
