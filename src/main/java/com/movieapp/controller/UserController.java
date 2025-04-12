@@ -69,28 +69,28 @@ public class UserController {
     }
     
     @GetMapping("/profile")
-    public ResponseEntity<?> getUserProfile(@RequestParam String email, HttpSession session) {
-        Boolean isAuthenticated = (Boolean) session.getAttribute("isAuthenticated");
-        String sessionEmail = (String) session.getAttribute("userEmail");
-        
-        if (isAuthenticated == null || !isAuthenticated || !email.equals(sessionEmail)) {
-            Map<String, Object> error = new HashMap<>();
-            error.put("success", false);
-            error.put("message", "Not authenticated");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
-        }
-        
-        User user = userService.findUserByEmail(email);
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-        
-        Map<String, Object> response = new HashMap<>();
-        response.put("success", true);
-        response.put("email", user.getEmail());
-        
-        return ResponseEntity.ok(response);
+public ResponseEntity<?> getUserProfile(HttpSession session) {
+    Boolean isAuthenticated = (Boolean) session.getAttribute("isAuthenticated");
+    String sessionEmail = (String) session.getAttribute("userEmail");
+
+    if (isAuthenticated == null || !isAuthenticated) {
+        Map<String, Object> error = new HashMap<>();
+        error.put("success", false);
+        error.put("message", "Not authenticated");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
+
+    User user = userService.findUserByEmail(sessionEmail);
+    if (user == null) {
+        return ResponseEntity.notFound().build();
+    }
+
+    Map<String, Object> response = new HashMap<>();
+    response.put("success", true);
+    response.put("email", user.getEmail());
+    return ResponseEntity.ok(response);
+}
+
     
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpSession session) {
